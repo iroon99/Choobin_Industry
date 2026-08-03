@@ -1,0 +1,129 @@
+/* Base body & container */
+body {
+    background-color: #f5deb3; /* wheat */
+}
+
+main.container,
+main.container-fluid {
+    background-color: #fff8dc; /* cornsilk */
+    padding: 20px 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* Navbar – override Bootstrap's .bg-dark */
+.wood-navbar {
+    background-color: #5d3a1a !important; /* deep brown */
+    border-bottom: 3px solid #a0522d;
+}
+
+.wood-navbar .navbar-nav .nav-link {
+    color: rgba(255, 255, 255, 0.85) !important;
+    transition: color 0.2s;
+}
+.wood-navbar .navbar-nav .nav-link:hover,
+.wood-navbar .navbar-nav .nav-link:focus {
+    color: #f5deb3 !important;
+}
+.wood-navbar .navbar-nav .active > .nav-link {
+    color: #f5deb3 !important;
+}
+
+/* Dropdown */
+.wood-dropdown {
+    background-color: #8b5a2b;
+    border: 1px solid #5d3a1a;
+}
+.wood-dropdown .dropdown-item {
+    color: #fff;
+}
+.wood-dropdown .dropdown-item:hover,
+.wood-dropdown .dropdown-item:focus {
+    background-color: #5d3a1a;
+    color: #f5deb3;
+}
+
+/* Footer */
+.wood-footer {
+    background-color: #5d3a1a !important;
+    border-top: 3px solid #a0522d;
+    margin-top: 2rem;
+}
+
+/* Custom button – replaces btn-outline-success */
+.btn-outline-wood {
+    color: #8b5a2b;
+    border-color: #8b5a2b;
+    background-color: transparent;
+}
+.btn-outline-wood:hover {
+    color: #fff;
+    background-color: #8b5a2b;
+    border-color: #8b5a2b;
+}
+.btn-outline-wood:focus,
+.btn-outline-wood.focus {
+    box-shadow: 0 0 0 0.2rem rgba(139, 90, 43, 0.5);
+}
+
+/* Alerts with woody tones */
+.alert-success,
+.alert-info,
+.alert-warning,
+.alert-danger {
+    background-color: #d2b48c;
+    border-color: #a0522d;
+    color: #3d1a00;
+}
+.alert-warning {
+    background-color: #f5deb3;
+}
+/* different shades for different alert types if desired */
+.alert-info {
+    background-color: #deb887;
+}
+
+/* Form focus */
+.form-control:focus {
+    border-color: #8b5a2b;
+    box-shadow: 0 0 0 0.2rem rgba(139, 90, 43, 0.25);
+}
+
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.card-container .card {
+    flex: 0 0 600px;
+}
+
+.right {
+    flex: 1 1 45%;
+    padding: 30px 25px;
+    background: #f2f4f8;
+}
+
+.info-item {
+    margin-bottom: 18px;
+}
+
+.rtl-heading {
+    text-align: right;
+    direction: rtl;
+    unicode-bidi: embed;
+}
+
+.center-heading {
+    text-align: center;
+    direction: rtl;
+    unicode-bidi: embed;
+}
+
+form p label {
+    display: block;
+    text-align: right;
+    margin-bottom: 0.25rem;
+}

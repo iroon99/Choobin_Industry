@@ -1,0 +1,51 @@
+{% extends "main_template.html" %}
+
+{% block content %}
+    <div class="text-center mt-4 mb-3">
+        <h1>{{ company_info.company_name }}</h1>
+        <p class="lead">{{ company_info.company_slogan }}</p>
+    </div>
+
+    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+        {% for image in slider_images %}
+            {% if forloop.counter == 1 %}
+                <div class="carousel-item active">
+                    <img src="/media/{{ image.image_file }}"
+                        class="d-block w-100"
+                        alt="{{ image.image_description }}"
+                        style="max-height: 400px; width: auto; object-fit: cover;">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>{{ image.image_title }}</h5>
+                    </div>
+                </div>
+            {% else %}
+                <div class="carousel-item item">
+                    <img src="/media/{{ image.image_file }}"
+                        class="d-block w-100"
+                        alt="{{ image.image_description }}"
+                        style="max-height: 400px; width: auto; object-fit: cover;">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>{{ image.image_title }}</h5>
+                    </div>
+                </div>
+            {% endif %}  
+        {% endfor %}
+
+        <button class="carousel-control-prev" type="button" data-target="#carouselExampleControls" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-target="#carouselExampleControls" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only"></span>
+        </button>
+</div>
+    </div>
+
+    <div class="text-center mt-5 mb-5">
+        <h5>
+            کیفیت و اصالت را زندگی کنید
+        </h5>
+    </div>
+{% endblock content %}

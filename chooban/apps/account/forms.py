@@ -25,13 +25,13 @@ class RegisterUserForm(forms.ModelForm):
     password1 = forms.CharField(
         label = 'رمز عبور',
         error_messages = {'required':'این فیلد نمی تواند خالی باشد'},
-        widget = forms.TextInput(attrs = {'class':'form-control', 'placeholder':'پسورد خود را وارد کنید'})
+        widget = forms.PasswordInput(attrs = {'class':'form-control', 'placeholder':'پسورد خود را وارد کنید'})
     )
 
     password2 = forms.CharField(
         label = 'تکرار رمز عبور',
         error_messages = {'required':'این فیلد نمی تواند خالی باشد'},
-        widget = forms.TextInput(attrs = {'class':'form-control', 'placeholder':'پسورد خود را تکرار کنید'})
+        widget = forms.PasswordInput(attrs = {'class':'form-control', 'placeholder':'پسورد خود را تکرار کنید'})
     )
 
     class Meta:
@@ -53,6 +53,7 @@ class RegisterUserForm(forms.ModelForm):
             raise ValidationError("نام کربری نمی تواند کوچکتر از 4 کارکتر باشد")
         return username
 
+
 class LoginUserForm(forms.Form):
     username = forms.CharField(
         label = 'نام کاربری',
@@ -63,5 +64,34 @@ class LoginUserForm(forms.Form):
     password = forms.CharField(
         label = 'رمز عبور',
         error_messages = {'required':'این فیلد نمی تواند خالی باشد'},
-        widget = forms.TextInput(attrs = {'class':'form-control', 'placeholder':'پسورد خود را وارد کنید'})
+        widget = forms.PasswordInput(attrs = {'class':'form-control', 'placeholder':'پسورد خود را وارد کنید'})
     )
+
+
+class ChangePasswordForm(forms.Form):
+    old_password = forms.CharField(
+        label = 'رمز عبور قبلی',
+        error_messages = {'required':'این فیلد نمی تواند خالی باشد'},
+        widget = forms.PasswordInput(attrs = {'class':'form-control', 'placeholder':'رمز عبور قبلی را وارد کنید'})
+    )
+
+    new_password = forms.CharField(
+        label = 'رمز عبور جدید',
+        error_messages = {'required':'این فیلد نمی تواند خالی باشد'},
+        widget = forms.PasswordInput(attrs = {'class':'form-control', 'placeholder':'رمز عبور جدید را وارد کنید'})
+    )
+
+    new_password_again = forms.CharField(
+        label = 'تکرار رمز عبور',
+        error_messages = {'required':'این فیلد نمی تواند خالی باشد'},
+        widget = forms.PasswordInput(attrs = {'class':'form-control', 'placeholder':'رمز عبور جدید را تکرار کنید'})
+    )
+
+    # Validation Methods
+    def clean_new_password_again(self):
+        password1 = self.cleaned_data.get('new_password')
+        password2 = self.cleaned_data.get('new_password_again')
+        if password1 and password2 and password1 == password2:
+            return password2
+        else:
+            raise ValidationError("خطای رمز عبور خالی یا غیر یکسان")

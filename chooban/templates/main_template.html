@@ -23,19 +23,19 @@
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
-                            خدمات
+                            پروژه ها
                         </a>
                         <div class="dropdown-menu wood-dropdown">
-                            <a class="dropdown-item" href="#">کابیت</a>
-                            <a class="dropdown-item" href="#">کمد دیواری</a>
-                            <a class="dropdown-item" href="#">میز و مبلمان</a>
+                            <a class="dropdown-item rtl-heading" href="/project/cabinet/">کابیت</a>
+                            <a class="dropdown-item rtl-heading" href="/project/wardrobe/">کمد دیواری</a>
+                            <a class="dropdown-item rtl-heading" href="/project/sofa/">مبلمان</a>
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">سفارش</a>
+                        <a class="nav-link" href="/order/add/">سفارش</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">مقالات</a>
+                        <a class="nav-link" href="/blog/">مقالات</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/about-us/">درباره ما</a>
@@ -48,7 +48,10 @@
                 {% if user.is_authenticated %}
                     <ul class="navbar-nav">
                         <li class="nav-item active">
-                            <a class="nav-link" href="/account/login/">حساب کاربری {{ user }}</a>
+                            <a class="nav-link" href="/account/panel/">حساب کاربری {{ user }}</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/account/change-password/">تغییر رمزعبور</a>
                         </li>
                         <li class="nav-item active">
                             <a class="nav-link" href="/account/logout/">خروج</a>
@@ -65,9 +68,9 @@
                     </ul>
                 {% endif %}
 
-                <form action="#" class="form-inline my-2 my-lg-0 mr-2" dir="ltr" method="get">
-                    <input class="form-control mr-sm-2" type="search" placeholder="جستجو" aria-label="Search" name="q" />
-                    <button class="btn btn-outline-wood my-2 my-sm-0" type="submit">جستجو</button>
+                <form action="/search/" class="form-inline my-2 my-lg-0 mr-2" dir="ltr" method="get">
+                    <input class="form-control mr-sm-2" type="search" aria-label="Search" name="q">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">جستجو</button>
                 </form>
             </div>
         </nav>
@@ -96,5 +99,6 @@
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{% static 'js/like.js' %}"></script>
 </body>
 </html>

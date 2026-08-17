@@ -1,0 +1,23 @@
+{% extends "main_template.html" %}
+
+{% block content %}
+<div class="card-container">
+    {% for order in user_orders%}
+        <div class="col-md-5 mb-3">
+            <div class="card" style="text-align: center; font-size: 20px">
+                <div class="card-header">
+                    {{order.order_title}}
+                </div>
+                <div class="card-body" style="text-align: center;">
+                    <blockquote class="blockquote mb-0">
+                    <p style="center-heading">مجری پروژه : {{order.order_manager}}</p>
+                    <p style="center-heading">نوع پروژه : {{order.order_type}}</p>
+                    <p style="center-heading">تاریخ ثبت سفارش : {{order.order_reg_date}}</p>
+                    <p style="center-heading">وضعیت پروژه : {{order.order_status}}</p>
+                    </blockquote>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+{% endblock content %}

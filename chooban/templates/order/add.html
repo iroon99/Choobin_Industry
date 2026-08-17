@@ -1,0 +1,12 @@
+{% extends "main_template.html" %}
+
+{% block content %}
+    <div class="row justify-content-md-center">
+        <form action="" method="post" class="col-md-6" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ order_form }}
+            <br>
+            <input type="submit" value="ثبت سفارش" class="btn btn-success btn-block mb-3"/>
+        </form>
+    </div>
+{% endblock %}

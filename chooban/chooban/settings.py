@@ -40,7 +40,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'solo',
     'apps.main',
-    'apps.account'
+    'apps.account',
+    'apps.blog',
+    'apps.project',
+    'apps.order'
 ]
 
 MIDDLEWARE = [
@@ -126,3 +129,5 @@ STATICFILES_DIRS=(join(BASE_DIR, 'static/'), )
 
 MEDIA_URL = 'media/'
 MEDIA_ROOT = join(BASE_DIR, 'media')
+
+LOGIN_URL = '/account/login/'

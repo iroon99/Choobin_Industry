@@ -111,7 +111,8 @@ main.container-fluid {
 }
 
 .rtl-heading {
-    text-align: right;
+    text-align: justify;
+    text-align-last: right;
     direction: rtl;
     unicode-bidi: embed;
 }
@@ -126,4 +127,37 @@ form p label {
     display: block;
     text-align: right;
     margin-bottom: 0.25rem;
+}
+
+.heart-liked {
+    color: #ff0000;      /* Bright red */
+    font-size: 24px;     /* Adjust size as needed */
+    text-decoration: none;
+    transition: transform 0.2s ease;
+}
+
+.heart-unliked {
+    color: #888888;      /* Medium gray */
+    font-size: 24px;     /* Adjust size as needed */
+    text-decoration: none;
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.default1 {
+    all: unset;
+    direction: rtl;
+    text-align: center;
+    display: revert;
+    font: revert;
+    color: revert;
+    margin: revert;
+    padding: revert;
+    border: revert;
+    background: revert;
+    unicode-bidi: embed;
+}
+
+label {
+    text-align: right;
+    width: 100%;
 }

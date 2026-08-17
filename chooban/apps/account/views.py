@@ -1,9 +1,12 @@
 from django.shortcuts import render, redirect
 from django.views import View
-from .forms import RegisterUserForm, LoginUserForm
+from .forms import RegisterUserForm, LoginUserForm, ChangePasswordForm
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 from django.contrib import messages
+from apps.order.models import Order
+from django.contrib.auth.mixins import LoginRequiredMixin
+
 
 # Create your views here.
 class RegisterUserView(View):
@@ -55,9 +58,36 @@ class LoginUserView(View):
         else:
             messages.warning(request, 'اطلاعات وارد شده معتبر نمی باشد')
             return render(request, 'account/login.html', {'form':form})
-        
+
+ 
 class LogoutUserView(View):
     def get(self, request):
         logout(request)
         messages.success(request, 'شما از حساب خود خارج شدید')
         return redirect("/")
+
+
+class PanelView(View):
+    def get(self, request):
+        user_orders = Order.objects.filter(orderer_user=request.user)
+        return render(request, "account/panel.html", {'user_orders':user_orders})
+
+
+class ChangePasswordView(LoginRequiredMixin, View):
+    def get(self, request):
+        form = ChangePasswordForm()
+        return render(request, "account/change_password.html", {'form': form})
+
+    def post(self, request):
+        form = ChangePasswordForm(request.POST)
+        if form.is_valid():
+            user = request.user
+            new_password = form.cleaned_data['new_password']
+            user.set_password(new_password)
+            user.save()
+            update_session_auth_hash(request, user)
+            messages.success(request, 'رمزعبور با موفقیت تغییر کرد')
+            return redirect('/')
+        else:
+            messages.warning(request, 'اطلاعات وارد شده معتبر نمی باشد')
+            return render(request, 'account/change_password.html', {'form': form})

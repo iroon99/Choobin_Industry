@@ -1,0 +1,39 @@
+{% extends 'main_template.html' %}
+
+{% block content %}
+    <h1 class='center-heading'>
+        جزئیات مقاله
+    </h1>
+    <div class="card" style="text-align: center; font-size: 20px">
+        <div class="card-header">
+            {{article.article_title}}
+        </div>
+        <div class="card-body" style="text-align: center;">
+            <blockquote class="blockquote mb-0">
+            <img src=/media/{{article.article_main_picture}} alt={{article.article_title}} width="850" height="565" >
+            <br><br>
+            <p class="rtl-heading">{{article.article_text}}</p>
+            <h4 class="default1">نویسنده مقاله</h4>
+            <p>{{article.author}}</p>
+            <h4 class="default1">گروه مقاله</h4>
+            <p>{{article.group}}</p>
+            <h4 class="default1">کلمات کلیدی</h4>
+            <p>{{ keywords|join:" - " }}</p>
+            <h4 class="default1">تاریخ انتشار</h4>
+            <p>{{article.published_at}}</p>
+            <br>
+            {% if user.is_authenticated %}
+                {% if article.id in article_like %}
+                    <a class="heart-liked" onclick="dislike({{ article.id }})" id="icon_like{{ article.id }}">
+                        <i class="fas fa-heart"></i>
+                    </a>
+                {% else %}
+                    <a class="heart-unliked" onclick="like({{ article.id }})" id="icon_like{{ article.id }}">
+                        <i class="fas fa-heart"></i>
+                    </a>
+                {% endif %}
+            {% endif %}
+            </blockquote>
+        </div>
+    </div>
+{% endblock %}
